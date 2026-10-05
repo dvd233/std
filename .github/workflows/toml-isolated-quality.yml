@@ -1,0 +1,18 @@
+name: Verify TOML multiline quote fix
+on:
+  push:
+    branches: [ci/toml-multiline-quotes-20261005]
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: 2.9.6
+      - run: deno task ok
